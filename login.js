@@ -1,20 +1,3 @@
-// const email = document.querySelector("#email");
-
-// const pwd = document.querySelector("#pwd");
-// const sign_in = document.querySelector(".sign_in");
-// const p_account = document.querySelector(".alert-email");
-// const p_pwd = document.querySelector(".alert-pwd");
-
-// // 驗證空值vertify()
-// const vertify = () => {
-//   if (email.value.trim() == "") {
-//     p_account.innerHTML =
-//       "<div class='text-red-500 font-bold'>帳號尚未填寫</div>";
-//   }
-//   if (pwd.value.trim() == "") {
-//     p_pwd.innerHTML = "<div class='text-red-500 font-bold'>密碼尚未填寫</div>";
-//   }
-// };
 // // 登入功能signIn()
 // const signIn = () => {
 //   let obj = {
@@ -52,7 +35,6 @@
 //   vertify();
 //   signIn();
 // };
-// document.addEventListener("keydown", enter);
 
 //VUE
 Vue.createApp({
@@ -70,6 +52,7 @@ Vue.createApp({
   },
 
   methods: {
+    //驗證欄位空值
     vertify() {
       if (this.email.trim() == "") {
         this.emptyEmailError = "帳號尚未填寫";
@@ -78,6 +61,7 @@ Vue.createApp({
         this.emptyPasswordError = "密碼尚未填寫";
       }
     },
+    //登入
     logIn() {
       this.vertify();
       let obj = {
@@ -98,7 +82,15 @@ Vue.createApp({
             location.href = "todo.html";
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          if (error.message == "Request failed with status code 401") {
+            Swal.fire("登入失敗", "請先註冊帳號", "error");
+          }
+        });
+    },
+    onPressEnter() {
+      this.logIn();
     },
   },
   mounted() {

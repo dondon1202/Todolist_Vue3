@@ -50,13 +50,18 @@
                 id="email"
                 placeholder="請輸入Email"
                 v-model="email"
+                @keydown.enter="onPressEnter"
               />
               <p
                 class="invisible mt-2 text-sm text-pink-600 peer-invalid:visible"
               >
                 請輸入正確的Email
               </p>
-              <div class="mt-[-25px] font-bold text-red-500" v-if="email == ''">
+              <div
+                class="mt-[-25px] font-bold text-red-500"
+                v-if="email == ''"
+                v-cloak
+              >
                 {{ emptyEmailError }}
                 <!-- 帳號尚未填寫 -->
               </div>
@@ -72,8 +77,9 @@
                 id="pwd"
                 placeholder="請輸入密碼"
                 v-model="password"
+                @keydown.enter="onPressEnter"
               />
-              <div class="font-bold text-red-500" v-if="password == ''">
+              <div class="font-bold text-red-500" v-if="password == ''" v-cloak>
                 {{ emptyPasswordError }}
                 <!-- 帳號尚未填寫 -->
               </div>
@@ -81,7 +87,7 @@
 
             <div class="mt-6 flex justify-center">
               <button
-                v-on:click="logIn(),vertify()"
+                v-on:click="logIn()"
                 class="sign_in w-[128px] rounded-lg bg-black py-3 text-[16px] text-white"
               >
                 登入
@@ -100,14 +106,21 @@
         </div>
       </section>
     </section>
-    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+
     <script src="https://unpkg.com/vue@next"></script>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"
       integrity="sha512-nnNHpffPSgINrsR8ZAIgFUIMexORL5tPwsfktOTxVYSv+AUAILuFYWES8IHl+hhIhpFGlKvWFiz9ZEusrPcSBQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="login.js"></script>
   </body>
 </html>
