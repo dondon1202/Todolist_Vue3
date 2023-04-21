@@ -33,10 +33,7 @@
             <h1 class="text-center text-xl font-bold lg:text-3xl">
               最實用的線上代辦事項服務
             </h1>
-            <p class="alert-email"></p>
-            <p class="alert-name"></p>
-            <p class="alert-pwd"></p>
-            <p class="alert-pwdcheck"></p>
+
             <form class="form mt-10">
               <h2
                 class="mb-2 text-lg font-black after:ml-0.5 after:text-red-500 after:content-['*']"
@@ -63,7 +60,6 @@
                 v-cloak
               >
                 {{ emptyEmailError }}
-                <!-- 帳號尚未填寫 -->
               </div>
               <h2
                 class="mb-2 mt-6 text-lg font-black after:ml-0.5 after:text-red-500 after:content-['*']"
@@ -81,7 +77,6 @@
               />
               <div class="font-bold text-red-500" v-if="password == ''" v-cloak>
                 {{ emptyPasswordError }}
-                <!-- 帳號尚未填寫 -->
               </div>
             </form>
 
