@@ -1,41 +1,3 @@
-// // 登入功能signIn()
-// const signIn = () => {
-//   let obj = {
-//     user: {
-//       email: email.value,
-//       password: pwd.value,
-//     },
-//   };
-//   axios
-//     .post("https://todoo.5xcamp.us/users/sign_in", obj)
-//     .then((response) => {
-//       console.log(response.data);
-//       if (response.data.message == "登入成功") {
-//         token = response.headers.authorization;
-//         nickname = response.data.nickname;
-//         localStorage.setItem("authorization", token);
-//         localStorage.setItem("nickname", nickname);
-//         location.href = "todo.html";
-//       }
-//     })
-//     .catch((error) => console.log(error));
-// };
-
-// // 登入監聽
-// sign_in.addEventListener("click", () => {
-//   vertify();
-//   signIn();
-// });
-
-// // ENTER 登入
-// const enter = (e) => {
-//   if (e.keyCode !== 13) {
-//     return;
-//   }
-//   vertify();
-//   signIn();
-// };
-
 //VUE
 Vue.createApp({
   data() {
@@ -74,6 +36,9 @@ Vue.createApp({
         .post("https://todoo.5xcamp.us/users/sign_in", obj)
         .then((response) => {
           console.log(response.data);
+          if (this.password.length < 5) {
+            Swal.fire("登入失敗", "密碼不得少於六位數", "warning");
+          }
           if (response.data.message == "登入成功") {
             this.token = response.headers.authorization;
             this.nickname = response.data.nickname;
@@ -89,11 +54,9 @@ Vue.createApp({
           }
         });
     },
-    onPressEnter() {
-      this.logIn();
-    },
+    // onPressEnter() {
+    //   this.logIn();
+    // },
   },
-  mounted() {
-    console.log(this.email);
-  },
+  mounted() {},
 }).mount("#app");
