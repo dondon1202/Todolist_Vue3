@@ -77,8 +77,8 @@ Vue.createApp({
           })
           .then((response) => {
             this.data.push(response.data);
-            this.count();
             this.getTodo();
+
             Swal.fire("成功", "新增一筆代辦事項", "success");
           })
           .catch((error) => {
@@ -94,6 +94,7 @@ Vue.createApp({
           },
         })
         .then((res) => {
+          Swal.fire("成功", "已成功切換狀態", "success");
           this.data.splice(index, 1, res.data);
           this.count();
         });
@@ -151,9 +152,7 @@ Vue.createApp({
           ).then(() => {
             // this.data.splice(this.Done, this.Done.length);
             this.data = this.data.filter((item) => {
-              return (
-                item.completed_at === null || item.completed_at === undefined
-              );
+              return item.completed_at === null;
             });
 
             this.count();
@@ -166,13 +165,12 @@ Vue.createApp({
       // this.count();
     },
     count() {
-      for (const item of this.data) {
-        if (item.completed_at === null || item.completed_at === undefined) {
-          this.notDone.push(item);
-        } else {
-          this.Done.push(item);
-        }
-      }
+      this.notDone = this.data.filter((item) => {
+        return item.completed_at === null;
+      });
+      this.Done = this.data.filter((item) => {
+        return item.completed_at !== null;
+      });
     },
     all() {
       this.showDoneMessage = false;
@@ -183,7 +181,7 @@ Vue.createApp({
     },
     not() {
       this.notDone = this.data.filter((item) => {
-        return item.completed_at === null || item.completed_at === undefined;
+        return item.completed_at === null;
       });
 
       this.showDoneMessage = false;
@@ -194,7 +192,7 @@ Vue.createApp({
     },
     done() {
       this.Done = this.data.filter((item) => {
-        return item.completed_at !== null && item.completed_at !== undefined;
+        return item.completed_at !== null;
       });
 
       this.showDoneMessage = true;

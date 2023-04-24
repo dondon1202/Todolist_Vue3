@@ -61,19 +61,19 @@
                 class="three-button flex justify-around border-b-2 text-center"
               >
                 <li
-                  :class=" showall? 'border-b-4 font-black border-gray-400 mb-[-2px] w-[33%] cursor-pointer pb-2 text-lg':' mb-[-2px] w-[33%] cursor-pointer pb-2'"
+                  :class=" showall? 'border-b-4 font-black border-[#fadd9b] mb-[-2px] w-[33%] cursor-pointer pb-2 text-lg':' mb-[-2px] w-[33%] cursor-pointer pb-2'"
                   @click="count(),all()"
                 >
                   全部
                 </li>
                 <li
-                  :class=" showNotDone? 'border-b-4 font-black border-gray-400 mb-[-2px] w-[33%] cursor-pointer pb-2 text-lg':' mb-[-2px] w-[33%] cursor-pointer pb-2'"
+                  :class=" showNotDone? 'border-b-4 font-black border-[#fadd9b] mb-[-2px] w-[33%] cursor-pointer pb-2 text-lg':' mb-[-2px] w-[33%] cursor-pointer pb-2'"
                   @click="count(),not()"
                 >
                   待完成
                 </li>
                 <li
-                  :class=" showDone? 'border-b-4 font-black border-gray-400 mb-[-2px] w-[33%] cursor-pointer pb-2 text-lg':' mb-[-2px] w-[33%] cursor-pointer pb-2'"
+                  :class=" showDone? 'border-b-4 font-black border-[#fadd9b] mb-[-2px] w-[33%] cursor-pointer pb-2 text-lg':' mb-[-2px] w-[33%] cursor-pointer pb-2'"
                   @click="count(),done()"
                 >
                   已完成
